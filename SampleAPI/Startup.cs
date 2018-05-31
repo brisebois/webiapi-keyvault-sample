@@ -25,36 +25,33 @@ namespace SampleAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var localAzureAd = Configuration.GetSection("AzureAd");
-            var remoteSecrets = Configuration.GetSection("Secrets");
-
             services.AddAuthentication(sharedOptions =>
                 {
                     sharedOptions.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                 })
                 .AddAzureAdBearer(options => new AzureAdOptions
                 {
-                    ClientId = remoteSecrets["AzureAd-ClientSecret"],
-                    ClientSecret = remoteSecrets["AzureAd-ClientSecret"],
-                    Domain = remoteSecrets["AzureAd-Domain"],
-                    Instance = remoteSecrets["AzureAd-Instance"],
-                    TenantId = remoteSecrets["AzureAd-TenantId"]
-                    
+                    ClientId = Configuration["AzureAd-ClientSecret"],
+                    ClientSecret = Configuration["AzureAd-ClientSecret"],
+                    Domain = Configuration["AzureAd-Domain"],
+                    Instance = Configuration["AzureAd-Instance"],
+                    TenantId = Configuration["AzureAd-TenantId"]
+
                 });
 
             services.AddMvc();
         }
 
-    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-    {
-        if (env.IsDevelopment())
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseDeveloperExceptionPage();
-        }
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
 
-        app.UseAuthentication();
-        app.UseMvc();
+            app.UseAuthentication();
+            app.UseMvc();
+        }
     }
-}
 }
