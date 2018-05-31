@@ -31,7 +31,7 @@ namespace SampleAPI
                 })
                 .AddAzureAdBearer(options => new AzureAdOptions
                 {
-                    ClientId = Configuration["AzureAd-ClientSecret"],
+                    ClientId = Configuration["AzureAd-ClientId"],
                     ClientSecret = Configuration["AzureAd-ClientSecret"],
                     Domain = Configuration["AzureAd-Domain"],
                     Instance = Configuration["AzureAd-Instance"],
