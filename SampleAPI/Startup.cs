@@ -29,14 +29,13 @@ namespace SampleAPI
                 {
                     sharedOptions.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                 })
-                .AddAzureAdBearer(options => new AzureAdOptions
+                .AddAzureAdBearer(options =>
                 {
-                    ClientId = Configuration["AzureAd-ClientId"],
-                    ClientSecret = Configuration["AzureAd-ClientSecret"],
-                    Domain = Configuration["AzureAd-Domain"],
-                    Instance = Configuration["AzureAd-Instance"],
-                    TenantId = Configuration["AzureAd-TenantId"]
-
+                    options.ClientId = Configuration["AzureAd-ClientId"];
+                    options.ClientSecret = Configuration["AzureAd-ClientSecret"];
+                    options.Domain = Configuration["AzureAd-Domain"];
+                    options.Instance = Configuration["AzureAd-Instance"];
+                    options.TenantId = Configuration["AzureAd-TenantId"];
                 });
 
             services.AddMvc();
