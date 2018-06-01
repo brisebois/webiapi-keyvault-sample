@@ -5,6 +5,11 @@ VisualStudioVersion = 15.0.27705.2000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleAPI", "SampleAPI\SampleAPI.csproj", "{54175C04-B775-470F-AF59-DACF69D6A257}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4851E0A0-00F1-4E49-A845-8B11A6AA04E9}"
+	ProjectSection(SolutionItems) = preProject
+		script.ps1 = script.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

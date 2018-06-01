@@ -41,7 +41,7 @@ namespace SampleAPI
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+                c.SwaggerDoc("v1", new Info { Title = "Demo API", Version = "v1" });
             });
 
             services.AddMvc();
@@ -64,7 +64,12 @@ namespace SampleAPI
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
-
+          
+            app.UseDefaultFiles(new DefaultFilesOptions
+            {
+                DefaultFileNames = new List<string> {"index.html"}
+            });
+            app.UseStaticFiles();
             app.UseAuthentication();
             app.UseMvc();
         }
